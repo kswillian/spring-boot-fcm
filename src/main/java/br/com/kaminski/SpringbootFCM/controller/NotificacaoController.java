@@ -1,5 +1,7 @@
 package br.com.kaminski.SpringbootFCM.controller;
 
+import br.com.kaminski.SpringbootFCM.model.Dto.NotificacaoTokenDto;
+import br.com.kaminski.SpringbootFCM.model.Dto.NotificacaoTopicoDto;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTokenForm;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTopicoForm;
 import br.com.kaminski.SpringbootFCM.service.NotificacaoService;
@@ -18,15 +20,15 @@ public class NotificacaoController {
     @PostMapping
     @RequestMapping("/topico")
     public ResponseEntity<Object> gerarNotificacaoPorTopico(@RequestBody NotificacaoTopicoForm notificacaoTopicoForm){
-        notificacaoService.enviarNotificacaoPorTopico(notificacaoTopicoForm);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        NotificacaoTopicoDto notificacaoTopicoDto = notificacaoService.enviarNotificacaoPorTopico(notificacaoTopicoForm);
+        return ResponseEntity.status(HttpStatus.CREATED).body(notificacaoTopicoDto);
     }
 
     @PostMapping
     @RequestMapping("/token")
     public ResponseEntity<Object> gerarNotificacaoPorToken(@RequestBody NotificacaoTokenForm notificacaoTokenForm){
-        notificacaoService.enviarNotificacaoPorToken(notificacaoTokenForm);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        NotificacaoTokenDto notificacaoTokenDto = notificacaoService.enviarNotificacaoPorToken(notificacaoTokenForm);
+        return ResponseEntity.status(HttpStatus.CREATED).body(notificacaoTokenDto);
     }
 
 }

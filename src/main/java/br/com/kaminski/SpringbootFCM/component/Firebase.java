@@ -1,9 +1,12 @@
 package br.com.kaminski.SpringbootFCM.component;
 
 import br.com.kaminski.SpringbootFCM.configure.NotificacaoParametro;
+import br.com.kaminski.SpringbootFCM.model.Dto.NotificacaoTokenDto;
+import br.com.kaminski.SpringbootFCM.model.Dto.NotificacaoTopicoDto;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTokenForm;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTopicoForm;
 import com.google.firebase.messaging.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -11,7 +14,9 @@ import java.time.Duration;
 @Component
 public class Firebase {
 
-    public void notificarUsuarioPorTopico(NotificacaoTopicoForm notificacaoTopicoForm){
+    private String resposta;
+
+    public NotificacaoTopicoDto notificarUsuarioPorTopico(NotificacaoTopicoForm notificacaoTopicoForm){
 
         Message message = Message.builder()
                 .setTopic(notificacaoTopicoForm.getTopico())
@@ -30,17 +35,17 @@ public class Firebase {
 
         try{
 
-            FirebaseMessaging.getInstance().send(message);
+            resposta = FirebaseMessaging.getInstance().send(message);
 
         }catch (FirebaseMessagingException e){
             e.printStackTrace();
         }
 
-        System.out.println("Response: " + message);
+        return new NotificacaoTopicoDto(notificacaoTopicoForm, resposta);
 
     }
 
-    public void notificarUsuarioPorToken(NotificacaoTokenForm notificacaoTokenForm){
+    public NotificacaoTokenDto notificarUsuarioPorToken(NotificacaoTokenForm notificacaoTokenForm){
 
         Message message = Message.builder()
                 .setToken(notificacaoTokenForm.getToken())
@@ -59,13 +64,13 @@ public class Firebase {
 
         try{
 
-            FirebaseMessaging.getInstance().send(message);
+            resposta = FirebaseMessaging.getInstance().send(message);
 
         }catch (FirebaseMessagingException e){
             e.printStackTrace();
         }
 
-        System.out.println("Response: " + message);
+        return new NotificacaoTokenDto(notificacaoTokenForm, resposta);
 
     }
 
