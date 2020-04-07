@@ -1,5 +1,6 @@
 package br.com.kaminski.SpringbootFCM;
 
+import br.com.kaminski.SpringbootFCM.configure.FirebaseConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ public class SpringBootFcmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootFcmApplication.class, args);
+		FirebaseConfig.inicializarConfiguracaoFirebase();
 	}
 
 }
