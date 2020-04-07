@@ -14,7 +14,7 @@ public class Firebase {
 
         Message message = Message.builder()
                 .setTopic(notificacaoTopicoForm.getTopico())
-                .setNotification(new Notification(notificacaoTopicoForm.getTitulo(), notificacaoTopicoForm.getCorpo()))
+                .setNotification(new Notification(notificacaoTopicoForm.getTitulo(), String.format("Unidade de saúde %s necessita de doadores de sangue %s.", notificacaoTopicoForm.getSolicitante(), notificacaoTopicoForm.getTopico())))
                 .putData("content", notificacaoTopicoForm.getTitulo())
                 .putData("body", notificacaoTopicoForm.getCorpo())
                 .build();
