@@ -1,5 +1,6 @@
 package br.com.kaminski.SpringbootFCM.controller;
 
+import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTokenForm;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTopicoForm;
 import br.com.kaminski.SpringbootFCM.service.NotificacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,13 @@ public class NotificacaoController {
     @RequestMapping("/topico")
     public ResponseEntity<Object> gerarNotificacaoPorTopico(@RequestBody NotificacaoTopicoForm notificacaoTopicoForm){
         notificacaoService.enviarNotificacaoPorTopico(notificacaoTopicoForm);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping
+    @RequestMapping("/token")
+    public ResponseEntity<Object> gerarNotificacaoPorToken(@RequestBody NotificacaoTokenForm notificacaoTokenForm){
+        notificacaoService.enviarNotificacaoPorToken(notificacaoTokenForm);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

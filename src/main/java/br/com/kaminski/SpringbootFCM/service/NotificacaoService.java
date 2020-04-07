@@ -1,6 +1,7 @@
 package br.com.kaminski.SpringbootFCM.service;
 
 import br.com.kaminski.SpringbootFCM.component.Firebase;
+import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTokenForm;
 import br.com.kaminski.SpringbootFCM.model.Form.NotificacaoTopicoForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ public class NotificacaoService {
 
     public void enviarNotificacaoPorTopico(NotificacaoTopicoForm notificacaoTopicoForm){
         firebase.notificarUsuarioPorTopico(notificacaoTopicoForm);
+    }
+
+    public void enviarNotificacaoPorToken(NotificacaoTokenForm notificacaoTokenForm){
+        firebase.notificarUsuarioPorToken(notificacaoTokenForm);
     }
 
 }
