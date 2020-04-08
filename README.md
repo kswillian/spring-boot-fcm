@@ -1,7 +1,7 @@
 # Spring-boot-FCM
 
 ## Firebase Cloud Messaging ##
-Geração de notificações push para App's Android chamadas ao Firebase Cloud Messaging.
+Geração de notificações push para App's Android com chamadas ao Firebase Cloud Messaging.
 
 #### Pré-requisitos ####
 * Obter uma conta Firebase.
